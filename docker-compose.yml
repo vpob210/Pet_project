@@ -27,4 +27,4 @@ services:
       - ./mysql-data:/var/lib/mysql
       - ./mysql:/docker-entrypoint-initdb.d # Директория с дампом базы (баловство, просто протестить)
     environment:
-      MYSQL_ROOT_PASSWORD: "root
+      MYSQL_ROOT_PASSWORD: "root"
