@@ -35,7 +35,7 @@ pipeline {
                             }
       
                         // Команда копирования проекта на удаленный сервер с использованием rsync
-                          sh "scp -r ${localPath}. ${REMOTE_USER}@${REMOTE_HOST}:${remoteDir}"
+                          sh "scp -r ${localPath} ${REMOTE_USER}@${REMOTE_HOST}:${remoteDir}"
                     }
                 }
             }
