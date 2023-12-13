@@ -26,11 +26,11 @@ pipeline {
 
                         // Перед выполнением команды проверяем наличие папки
                         script {
-                            def remoteDirExists = sh(script: "${REMOTE_HOST} '[ -d ~/Pet_project ] && echo true || echo false'", returnStatus: true).trim() == 'true'
+                            def remoteDirExists = sh(script: "ssh ${REMOTE_HOST} '[ -d /home/${REMOTE_USER}/Pet_project ] && echo true || echo false'", returnStdout: true).trim() == 'true'
 
                             if (!remoteDirExists) {
                                 // Если папка не существует, создаем ее
-                                sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'mkdir ~/Pet_project'"
+                                sh "ssh ${REMOTE_HOST} 'mkdir ~/Pet_project'"
                             }
                         }
 
