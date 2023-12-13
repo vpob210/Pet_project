@@ -41,7 +41,9 @@ pipeline {
                         }
 
                         // Выполняем команду по SSH
-                        sh command
+                        dir(localPath) {
+                            sh command
+                        }
                     }
                 }
             }
