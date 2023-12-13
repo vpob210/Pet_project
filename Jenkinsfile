@@ -58,5 +58,16 @@ pipeline {
             }
         }
     }
-}
+        stage('start Docker compouse') {
+            steps {
+                script {
+                    // Запуск контейнеров проекта
+                    var stopDocker = 'cd Pet_project/ && docker-compose down'
+                    var startDocker = 'docker-compose up --build -d'
+
+                    sh "ssh -o StrictHostKeyChecking=no ${REMOTE_HOST} '${stopDocker} && ${startDocker}'"
+                }
+            }
+        }
+   }
 }
