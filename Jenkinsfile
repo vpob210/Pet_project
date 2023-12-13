@@ -33,6 +33,10 @@ pipeline {
                                 // Если папка не существует, создаем ее
                                 sh "ssh ${REMOTE_HOST} 'mkdir ~/Pet_project'"
                             }
+
+                            script {
+                            sh "ls -lah ${localPath}"
+                        }
       
                         // Команда копирования проекта на удаленный сервер с использованием rsync
                           sh "scp -r ${localPath} ${REMOTE_USER}@${REMOTE_HOST}:${remoteDir}"
