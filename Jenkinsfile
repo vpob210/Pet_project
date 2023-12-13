@@ -61,11 +61,13 @@ pipeline {
         stage('start Docker compouse') {
             steps {
                 script {
+                    sshagent(['ssh-pet-id']) {
                     // Запуск контейнеров проекта
                     def stopDocker = 'cd Pet_project/ && docker-compose down'
                     def startDocker = 'docker-compose up --build -d'
 
                     sh "ssh ${REMOTE_HOST} '${stopDocker} && ${startDocker}'"
+                    }
                 }
             }
         }
