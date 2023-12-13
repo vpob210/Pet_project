@@ -38,8 +38,7 @@ pipeline {
                             cd ${localPath} &&
                             rsync -r -C ${localPath}. ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
                         """
-                        }
-
+                            
                         // Выполняем команду по SSH
                         dir(localPath) {
                             sh command
@@ -49,4 +48,5 @@ pipeline {
             }
         }
     }
+}
 }
