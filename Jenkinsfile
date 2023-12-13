@@ -10,12 +10,12 @@ pipeline {
         stage('SSH and Wall') {
             steps {
                 script {
-                    sshagent(['ssh-credentials-id']) {
+                    sshagent(['ssh-pet-id']) {
                         // Команда, которую нужно выполнить
                         def command = 'wall "Hello from Jenkins!"'
 
                         // Выполняем команду по SSH
-                        sh "ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} '${command}'"
+                        sh "ssh -o StrictHostKeyChecking=no ${REMOTE_HOST} '${command}'"
                     }
                 }
             }
