@@ -22,7 +22,7 @@ pipeline {
                 script {
                     sshagent(['ssh-pet-id']) {
                         // Команда копирования проекта на удаленный сервер с использованием rsync
-                        def command = "rsync -r ${PROJECT_FOLDER}/ ${REMOTE_USER}@${REMOTE_HOST}:~/"
+                        def command = "rsync -r ${PROJECT_FOLDER}/ ${REMOTE_USER}@${REMOTE_HOST}:~/${PROJECT_FOLDER}/"
 
                         // Перед выполнением команды проверяем наличие папки
                         script {
