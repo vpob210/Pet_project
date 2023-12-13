@@ -26,7 +26,7 @@ pipeline {
 
                         // Перед выполнением команды проверяем наличие папки
                         script {
-                            def remoteDirExists = sh(script: "[ -d /home/${REMOTE_USER}/Pet_project ] && echo 'true' || echo 'false'", returnStatus: true).toString().trim() == 'true'
+                            def remoteDirExists = sh(script: "${REMOTE_HOST} '[ -d ~/Pet_project ] && echo true || echo false'", returnStatus: true).trim() == 'true'
 
                             if (!remoteDirExists) {
                                 // Если папка не существует, создаем ее
