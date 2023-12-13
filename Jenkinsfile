@@ -5,6 +5,7 @@ pipeline {
         REMOTE_HOST = '192.168.66.195'
         REMOTE_USER = 'jenkins'
         PROJECT_FOLDER = 'Pet_project'
+        LOCAL_PROJECT_PATH = '/var/lib/jenkins/workspace/Pet_compose/Pet_project'
     }
 
     stages {
@@ -25,7 +26,7 @@ pipeline {
                         def localPath = "${WORKSPACE}/${PROJECT_FOLDER}/"
                         
                         // Команда копирования проекта на удаленный сервер с использованием rsync
-                        def command = "rsync -r ${localPath} ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/"
+                         def command = "rsync -r ${LOCAL_PROJECT_PATH}/ ${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}"
 
                         // Перед выполнением команды проверяем наличие папки
                         script {
