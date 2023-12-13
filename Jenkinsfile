@@ -34,15 +34,10 @@ pipeline {
                             }
       
                         // Команда копирования проекта на удаленный сервер с использованием rsync
-                         def command = """
+                         sh """
                             cd ${localPath} &&
-                            rsync -r -C ${localPath} ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
+                            rsync -r -C . ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
                         """
-                            
-                        // Выполняем команду по SSH
-                        dir(localPath) {
-                            sh command
-                        }
                     }
                 }
             }
