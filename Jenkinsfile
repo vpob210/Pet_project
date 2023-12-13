@@ -39,7 +39,7 @@ pipeline {
                             }
 
                             script {
-                            sh "ls -lah ${localPath}"
+                            sh "ls -lah ${WORKSPACE}"
                         }
       
                         // Команда копирования проекта на удаленный сервер с использованием rsync
