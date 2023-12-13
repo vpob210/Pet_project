@@ -8,6 +8,14 @@ pipeline {
     }
 
     stages {
+        stage('Check Workspace Content') {
+    steps {
+        script {
+            // Вывести содержимое рабочей директории перед клонированием
+            sh "ls -lah ${WORKSPACE}"
+        }
+    }
+}
         stage('Clone Project') {
             steps {
                 script {
