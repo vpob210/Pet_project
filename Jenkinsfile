@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sshagent(['ssh-pet-id']) {
                         // Формируем полный путь к папке Pet_project
-                        def localPath = "${WORKSPACE}/${PROJECT_FOLDER}"
+                        def localPath = "${WORKSPACE}"
 
                         // Перед выполнением команды проверяем наличие папки
                         script {
