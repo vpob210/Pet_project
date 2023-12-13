@@ -46,7 +46,7 @@ pipeline {
                              def localPath = "${WORKSPACE}"
                                   def command = """
                                     cd ${localPath} &&
-                                    rsync -r -C ${WORKSPACE}/. ${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
+                                    rsync -r -C --delete ${WORKSPACE}/. ${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
                                     """
 
                         // Выполняем команду по SSH
