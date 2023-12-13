@@ -36,7 +36,7 @@ pipeline {
                         // Команда копирования проекта на удаленный сервер с использованием rsync
                          sh """
                             cd ${localPath} &&
-                            rsync -r -C . ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
+                            rsync -r -C --verbose . ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
                         """
                     }
                 }
