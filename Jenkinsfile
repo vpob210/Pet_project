@@ -65,7 +65,7 @@ pipeline {
                     def stopDocker = 'cd Pet_project/ && docker-compose down'
                     def startDocker = 'docker-compose up --build -d'
 
-                    sh "ssh -o StrictHostKeyChecking=no ${REMOTE_HOST} '${stopDocker} && ${startDocker}'"
+                    sh "ssh ${REMOTE_HOST} '${stopDocker} && ${startDocker}'"
                 }
             }
         }
