@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost"; // Адрес сервера базы данных
+$servername = "mysql_pet"; // Адрес сервера базы данных
 $username = "todo_user";   // Имя пользователя базы данных
 $password = "vpob"; // Пароль пользователя базы данных
 $dbname = "todo_app";       // Имя базы данных

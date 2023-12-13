@@ -1,30 +1,52 @@
-version: '3'
+version: '3.5'
 
 services:
   nginx:
+    container_name: nginx_pet
     image: nginx:latest
     ports:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      network_pet:
+    depends_on:
+      - web
 
   web:
+    container_name: apache_web_pet
     build:
-      context: ./apache_image
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8080:80"
 #    volumes:
 #      - ./www:/var/www/html
+    networks:
+      network_pet:
+        ipv4_address: 172.18.0.3
 
   mysql:
+    container_name: mysql_pet
     image: mysql:latest
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql:/docker-entrypoint-initdb.d # Директория с дампом базы (баловство, просто протестить)
+      #      - ./mysql/my.cnf:/etc/mysql/my.cnf
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql # Инициализация дб, пользователя
       - ./mysql-data:/var/lib/mysql
-      - ./mysql:/docker-entrypoint-initdb.d # Директория с дампом базы (баловство, просто протестить)
     environment:
       MYSQL_ROOT_PASSWORD: "root"
+    depends_on:
+      - web
+    networks:
+      network_pet:
+
+networks:
+  network_pet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/29
