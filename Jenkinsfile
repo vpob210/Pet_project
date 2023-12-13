@@ -9,13 +9,13 @@ pipeline {
 
     stages {
         stage('Check Workspace Content') {
-    steps {
-        script {
-            // Вывести содержимое рабочей директории перед клонированием
-            sh "ls -lah ${WORKSPACE}"
+            steps {
+                script {
+                    // Вывести содержимое рабочей директории перед клонированием
+                    sh "ls -lah ${WORKSPACE}"
+                }
+            }
         }
-    }
-}
         stage('Clone Project') {
             steps {
                 script {
@@ -29,9 +29,6 @@ pipeline {
             steps {
                 script {
                     sshagent(['ssh-pet-id']) {
-                        // Формируем полный путь к папке Pet_project
-                        def localPath = "${WORKSPACE}"
-
                         // Перед выполнением команды проверяем наличие папки
                         script {
                             def remoteDirExists = sh(script: "ssh ${REMOTE_HOST} '[ -d /home/${REMOTE_USER}/Pet_project ] && echo true || echo false'", returnStdout: true).trim() == 'true'
@@ -48,7 +45,7 @@ pipeline {
                         // Команда копирования проекта на удаленный сервер с использованием rsync
                                   def command = """
                                     cd ${localPath} &&
-                                    rsync -r -C ${localPath}/. ${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
+                                    rsync -r -C ${WORKSPACE}/. ${REMOTE_HOST}:/home/${REMOTE_USER}/${PROJECT_FOLDER}/
                                     """
 
                         // Выполняем команду по SSH
